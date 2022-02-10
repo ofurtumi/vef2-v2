@@ -9,10 +9,6 @@ async function index(req, res) {
 	const validated = true;
 	const events = await getAllEvents();
 
-	// events.forEach(event => {
-	// 	console.log('event.id --> ' + event.id)
-	// });
-
 	return res.render('index', {
 		title,
 		validated,

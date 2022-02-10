@@ -20,18 +20,31 @@ async function index(req, res) {
 async function eventPage(req, res) {
 	const { slug } = req.params;
 
-	const eventDetails = await getSingleEvent(slug);
-	const details = eventDetails[0];
+	let data = false;
 
-	let cDate = new Date(details.created);
-	cDate = cDate.toUTCString();
-	
-	let mDate = new Date(details.modified);
-	mDate = mDate.toUTCString();
-	console.log(mDate);
+	try {
+		const eventDetails = await getSingleEvent(slug);
+		const details = eventDetails[0];
 
-	console.log(details.name);
-	res.render('single-event', { title: details.name, details, cDate, mDate });
+		let cDate = new Date(details.created);
+		cDate = cDate.toUTCString();
+
+		let mDate = new Date(details.modified);
+		mDate = mDate.toUTCString();
+		
+		data = true;
+
+		console.log(details.name);
+		res.render('single-event', {
+			title: details.name,
+			data,
+			details,
+			cDate,
+			mDate,
+		});
+	} catch (error) {
+		console.error('Unable to get data corresponding to this slug', error);
+	}
 }
 
 async function login(req, res) {

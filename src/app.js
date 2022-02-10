@@ -19,19 +19,40 @@ app.use(express.static(join(path, '../public')));
 app.set('views', join(path, '../views'));
 app.set('view engine', 'ejs');
 
-app.use('/', basicRouter);
 app.use('/admin', adminRouter);
+app.use('/', basicRouter);
 
 
-// app.use((req, res) => {
-//     const title = `Halló ${req.url.length > 1 ? req.url.substring(1) : 'heimur'}!`
-//     res.status(200).render('index', { title});
-// });
+/**
+ * Middleware sem sér um 404 villur.
+ *
+ * @param {object} req Request hlutur
+ * @param {object} res Response hlutur
+ * @param {function} next Næsta middleware
+ */
+// eslint-disable-next-line no-unused-vars
+function notFoundHandler(req, res, next) {
+  const title = 'Síða fannst ekki';
+  res.status(404).render('error', { title });
+}
 
-app.use((req, res) => {
-    const title = 'Síða fannst ekki';
-    res.status(404).render('error', { title });
-  });  
+/**
+ * Middleware sem sér um villumeðhöndlun.
+ *
+ * @param {object} err Villa sem kom upp
+ * @param {object} req Request hlutur
+ * @param {object} res Response hlutur
+ * @param {function} next Næsta middleware
+ */
+// eslint-disable-next-line no-unused-vars
+function errorHandler(err, req, res, next) {
+  console.error(err);
+  const title = 'Villa kom upp';
+  res.status(500).render('error', { title });
+}
+
+app.use(notFoundHandler);
+// app.use(errorHandler); 
 
 app.listen(port, () => {
     console.info(`Server running at http://localhost:${port}/`);
