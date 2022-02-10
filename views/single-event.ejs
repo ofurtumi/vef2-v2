@@ -1,0 +1,12 @@
+<%- include ('header') -%> 
+
+<h1><%= details.name %> </h1>
+<% if(details.description) { %> 
+    <p><%= details.description %> </p>
+<% } %> 
+<div class="dates">
+    <p><%= cDate %> </p> 
+    <p><%= mDate %> </p> 
+</div>
+
+<%- include ('footer') -%> 

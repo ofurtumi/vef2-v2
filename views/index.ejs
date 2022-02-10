@@ -1,0 +1,15 @@
+<%- include('header') -%>
+
+<h1><%= title %></h1>
+<% if(validated) { %>
+    <%- include('admin-index') -%>
+<% } %>
+
+<% events.forEach(event => { %>
+    <a href="<%=event.slug %>"><%= event.name %></a>
+    <% if (event.description) { %>
+        <p><%= event.description %></p>
+    <% } %>
+<% }); %> 
+
+<%- include('footer') -%>
