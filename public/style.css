@@ -1,52 +1,95 @@
+:root {
+	--border-basic: 5px solid black;
+	--border-radius-basic: 10px;
+	--padding-basic: 5px;
+
+    --single-event-bg: white;
+    --single-event-cl: black;
+}
+
+html {
+    -ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
 body {
-    max-width: 1000px;
-    margin: 0 auto;
+	max-width: 1000px;
+	margin: 0 auto;
+	
 }
 
 h1 {
-    text-align: center;
+	text-align: center;
+	border: var(--border-basic);
+	border-radius: var(--border-radius-basic);
+	padding: var(--padding-basic);
 }
 
 hr {
-    max-width: 95%;
-    margin: 5px auto 5px;
+	max-width: 95%;
+	margin: 5px auto 5px;
 }
 
 header ul {
-    margin-inline-start: 0;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+	padding-inline-start: 0;
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	gap: 50px;
 }
 
 header li {
-    display: inline;
+	display: inline;
 }
 
+
 .list-events {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
 }
 
 .list-single-event {
-    border: 5px solid black;
-    border-radius: 10px;
-    padding: 5px;
-    min-height: 100px;
+    position: relative;
+    border: var(--border-basic);
+	border-radius: var(--border-radius-basic);
+	padding: var(--padding-basic);
+	min-height: 100px;
+    background-color: var(--single-event-bg);
+    color: var(--single-event-cl);
+    transition: ease-in-out .1s;
 }
 
-.list-single-event a {
+.list-single-event:hover, .list-single-event:focus-within {
+    background: var(--single-event-cl);
+    color: var(--single-event-bg);
+}
+
+.list-single-event h2 {
+    margin: 0;
     display: block;
-    text-align: center;
-    font-size: 2em;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
+	text-align: center;
+	font-size: 2em;
+	text-decoration: none;
+	color: inherit;
+	font-weight: bold;
 }
 
 .list-single-event p {
     max-width: 95%;
-    margin: 0 auto;
+	margin: 0 auto;
+}
+
+.link-spanner {
+    pointer-events: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
