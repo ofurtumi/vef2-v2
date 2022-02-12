@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS events;
 CREATE TABLE IF NOT EXISTS events(
     id serial primary key,
-    name varchar(64) not null,
+    name varchar(64) not null unique,
     slug varchar(64) not null,
     description varchar(500),
     created timestamp with time zone not null default current_timestamp,

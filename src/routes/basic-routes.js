@@ -43,7 +43,8 @@ async function eventPage(req, res) {
 			mDate,
 		});
 	} catch (error) {
-		console.error('Unable to get data corresponding to this slug', error);
+		console.error('Unable to get data corresponding to this slug,', error);
+		res.render("error",{ title:"síða fannst ekki"});
 	}
 }
 

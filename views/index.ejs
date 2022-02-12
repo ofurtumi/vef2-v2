@@ -5,11 +5,16 @@
     <%- include('admin-index') -%>
 <% } %>
 
-<% events.forEach(event => { %>
-    <a href="<%=event.slug %>"><%= event.name %></a>
-    <% if (event.description) { %>
-        <p><%= event.description %></p>
-    <% } %>
-<% }); %> 
+<div class="list-events">
+    <% events.forEach(event => { %>
+        <div class="list-single-event">
+            <a href="<%=event.slug %>"><%= event.name %></a>
+            <% if (event.description) { %>
+                <hr>
+                <p><%= event.description %></p>
+            <% } %>
+        </div>
+    <% }); %> 
+</div>
 
 <%- include('footer') -%>
