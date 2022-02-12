@@ -1,12 +1,15 @@
-<form method="post" action="/admin" class="admin-form">
-    <div class="admin-form-field">
-        <label for="name">Nafn viðburðar</label>
+<form method="post" action="/admin" class="admin-form basic-border">
+    <fieldset class="admin-form-field">
+        <legend>Nafn viðburðar</legend>
         <input type="text" name="name" id="name" value="">
-    </div>
+    </fieldset>
 
-    <div class="admin-form-field">
-        <label for="description">Lýsing viðburðar</label>
-        <input type="text" name="description" id="description" value="">
-    </div>
-    <button>Bæta við!</button>
+    <fieldset class="admin-form-field">
+        <legend>Lýsing viðburðar</legend>
+        <textarea name="description" id="description" value=""></textarea>
+    </fieldset>
+    <fieldset class="admin-form-field">
+        <legend>Bæta við</legend>
+        <button>Bæta við!</button>
+    </fieldset>
 </form>

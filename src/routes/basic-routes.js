@@ -6,8 +6,8 @@ import { getAllEvents, getSingleEvent } from '../events.js';
 export const router = express.Router();
 
 async function index(req, res) {
-	const title = 'Blessaður Aumingi, enginn réttindi fyrir þig??';
-	const validated = false;
+	const title = 'Daginn';
+	const validated = req.isAuthenticated();
 	const events = await getAllEvents();
 
 	return res.render('index', {
@@ -34,7 +34,6 @@ async function eventPage(req, res) {
 		
 		data = true;
 
-		console.log(details.name);
 		res.render('single-event', {
 			title: details.name,
 			data,
