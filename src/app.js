@@ -12,6 +12,7 @@ import { router as adminRouter } from "./routes/admin-routes.js";
 dotenv.config();
 
 const {
+  HOST: hostname = '127.0.0.1',
   PORT: port = 6969,
   SESSION_SECRET: sessionSecret,
   DATABASE_URL: connectionString,
