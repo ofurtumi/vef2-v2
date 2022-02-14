@@ -12,6 +12,12 @@
     <header>
         <ul>
             <a href="/">Heim</a>
-            <a href="/admin/">Skrá inn</a>
+            <% if (validated) { %>
+                <a href="/admin">Stjórnborð</a>
+                <a href="/admin/logout">Skrá út</a>
+            <% } else { %>
+                <a href="/admin/">Skrá inn</a>
+            <% } %> 
         </ul>
     </header>
+    <main>

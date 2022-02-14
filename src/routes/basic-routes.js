@@ -1,57 +1,62 @@
 import express from 'express';
 
-import { findByUsername } from '../users.js';
-import { getAllEvents, getSingleEvent } from '../events.js';
+import { addResponse, getAllEvents, getSingleEvent } from '../events.js';
+import { getResponses } from '../lib/db.js';
+import { catchErrors } from '../utils.js';
 
 export const router = express.Router();
 
 async function index(req, res) {
-	const title = 'Daginn';
-	const validated = req.isAuthenticated();
-	const events = await getAllEvents();
+  const title = 'Daginn';
+  const admin = false;
+  const validated = req.isAuthenticated();
+  const events = await getAllEvents();
 
-	return res.render('index', {
-		title,
-		validated,
-		events,
-	});
+  return res.render('index', {
+    title,
+    validated,
+    events,
+    admin,
+  });
 }
 
 async function eventPage(req, res) {
-	const { slug } = req.params;
+  const { slug } = req.params;
 
-	let data = false;
+  let data = false;
 
-	try {
-		const eventDetails = await getSingleEvent(slug);
-		const details = eventDetails[0];
+  try {
+    const eventDetails = await getSingleEvent(slug);
+    const responses = await getResponses(slug);
+    const eventComments = responses.rows;
+    const details = eventDetails[0];
+    const desc = details.description;
+    const validated = req.isAuthenticated();
 
-		let cDate = new Date(details.created);
-		cDate = cDate.toUTCString();
+    let cDate = new Date(details.created);
+    cDate = cDate.toUTCString();
 
-		let mDate = new Date(details.modified);
-		mDate = mDate.toUTCString();
-		
-		data = true;
+    let mDate = new Date(details.modified);
+    mDate = mDate.toUTCString();
 
-		res.render('single-event', {
-			title: details.name,
-			data,
-			details,
-			cDate,
-			mDate,
-		});
-	} catch (error) {
-		console.error('Unable to get data corresponding to this slug,', error);
-		res.render("error",{ title:"síða fannst ekki"});
-	}
-}
+    data = true;
 
-async function login(req, res) {
-	const { testname } = req.body;
-	return res.render('login', { title: 'asdf síðan baby', testname });
+    res.render('single-event', {
+      title: details.name,
+      data,
+      details,
+      eventComments,
+      desc,
+      cDate,
+      mDate,
+      validated,
+    });
+  } catch (error) {
+    console.error('Unable to get data corresponding to this slug,', error);
+    res.render('error', { title: 'síða fannst ekki' });
+  }
 }
 
 router.get('/', index);
 router.get('/:slug', eventPage);
-router.get('/login', login);
+router.post('/:slug', catchErrors(addResponse));
