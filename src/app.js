@@ -19,10 +19,10 @@ const {
   DATABASE_URL: connectionString,
 } = process.env;
 
-if (!connectionString || !sessionSecret) {
-  console.error("Vantar gögn í env");
-  process.exit(1);
-}
+// if (!connectionString || !sessionSecret) {
+//   console.error("Vantar gögn í env");
+//   process.exit(1);
+// }
 
 const app = express();
 
