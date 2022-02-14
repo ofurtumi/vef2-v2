@@ -14,6 +14,7 @@ dotenv.config();
 const {
   HOST: hostname = '127.0.0.1',
   PORT: port = 6969,
+  NODE_ENV: nodeEnv = 'development',
   SESSION_SECRET: sessionSecret,
   DATABASE_URL: connectionString,
 } = process.env;

@@ -8,12 +8,19 @@ const DROPFILE = './sql/drop.sql';
 
 dotenv.config();
 
-const { DATABASE_URL: connectionString, NODE_ENV: nodeEnv = 'development' } =
-	process.env;
+dotenv.config();
 
-if (!connectionString) {
-	console.error('vantar DATABASE_URL í .env');
-	process.exit(-1);
+const {
+  HOST: hostname = '127.0.0.1',
+  PORT: port = 6969,
+  NODE_ENV: nodeEnv = 'development',
+  SESSION_SECRET: sessionSecret,
+  DATABASE_URL: connectionString,
+} = process.env;
+
+if (!connectionString || !sessionSecret) {
+  console.error("Vantar gögn í env");
+  process.exit(1);
 }
 
 const ssl = nodeEnv === 'production' ? { rejectUnauthorized: false } : false;
