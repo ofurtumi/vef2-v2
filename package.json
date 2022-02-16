@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"dotenv -e .env node ./src/setup.js\" \"dotenv -e .env node ./src/app.js\"",
+    "build": "dotenv -e .env node ./src/setup.js",
+    "start": "dotenv -e .env node ./src/app.js",
     "dev": "dotenv -e .env -- nodemon ./src/app.js",
     "prettier": "prettier --write .",
     "lint": "concurrently npm:lint:*",
