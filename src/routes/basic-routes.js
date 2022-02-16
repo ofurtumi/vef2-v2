@@ -7,7 +7,7 @@ import { catchErrors } from '../utils.js';
 export const router = express.Router();
 
 async function index(req, res) {
-  const title = 'Daginn';
+  const title = 'Viðburðayfirlit';
   const admin = false;
   const validated = req.isAuthenticated();
   const events = await getAllEvents();

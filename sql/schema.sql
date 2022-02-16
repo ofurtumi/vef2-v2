@@ -1,4 +1,3 @@
-DROP TABLE IF EXISTS events;
 CREATE TABLE IF NOT EXISTS events(
     id serial primary key,
     name varchar(64) not null unique,
@@ -7,7 +6,7 @@ CREATE TABLE IF NOT EXISTS events(
     created timestamp with time zone not null default current_timestamp,
     modified timestamp with time zone not null default current_timestamp
 );
-DROP TABLE IF EXISTS registration;
+
 CREATE TABLE IF NOT EXISTS registration (
     id serial primary key,
     name character varying(64) NOT NULL,
@@ -15,7 +14,7 @@ CREATE TABLE IF NOT EXISTS registration (
     eventid serial,
     created timestamp with time zone not null default current_timestamp
 );
-DROP TABLE IF EXISTS users;
+
 CREATE TABLE IF NOT EXISTS users (
     id serial primary key,
     username character varying(255) NOT NULL,

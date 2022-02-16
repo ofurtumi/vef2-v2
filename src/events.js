@@ -5,12 +5,22 @@ export async function createEvent(req, res) {
 
   console.info("insert", { name, description }, "into events");
   let success = true;
+  let m = ""
 
   try {
-    if (name !== "") {
+    if (description.length > 500) {
+      success = false;
+      m = "Lýsing má ekki vera lengri en 500 stafir, vinsamlegast styttu lýsinguna og reyndu aftur.\nNafn: " + name + "\nLýsing: "+description;
+    }
+    else if (name.length > 64) {
+      success = false;
+      m = "Nafn má ekki vera lengri en 64 stafir, vinsamlegast styttu nafnið og reyndu aftur.\nNafn: " + name + "\nLýsing: "+description
+    }
+    else if (name !== "") {
       success = await insert({ name, description });
     } else {
       success = false;
+      m = "Allir viðburðir þurfa að hafa nafn, vinsamlegast bættu við nafni og reyndu aftur."
     }
   } catch (e) {
     console.error(e);
@@ -21,7 +31,6 @@ export async function createEvent(req, res) {
 
   return res.render("error", {
     title: "Gat ekki skráð!",
-    message: "Allir viðburðir þurfa að hafa nafn",
   });
 }
 

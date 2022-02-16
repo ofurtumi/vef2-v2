@@ -28,11 +28,16 @@ function createFakeData(n) {
 }
 
 async function create() {
-  const data = await promises.readFile(SCHEMAFILE);
+  const dropData = await promises.readFile(DROPFILE);
+  await query(dropData.toString("utf-8"));
 
-  await query(data.toString("utf-8"));
+  const schemeData = await promises.readFile(SCHEMAFILE);
+  await query(schemeData.toString("utf-8"));
 
-  const fakes = createFakeData(10);
+  const insertData = await promises.readFile(INSERT);
+  await query(insertData.toString('utf-8'))
+
+  const fakes = createFakeData(1);
 
   for (let i = 0; i < fakes.length; i += 1) {
     const fake = fakes[i];
@@ -51,6 +56,12 @@ async function create() {
       console.error("Error inserting", e);
       return;
     }
+  }
+
+  try {
+    
+  } catch (error) {
+    
   }
 
   await end();

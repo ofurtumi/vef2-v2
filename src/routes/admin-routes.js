@@ -27,7 +27,7 @@ function login(req, res) {
 }
 
 async function index(req, res) {
-  const title = 'Blessaður admin';
+  const title = 'Admin stjórnborð';
   const validated = req.isAuthenticated();
   const admin = req.isAuthenticated();
   const events = await getAllEvents();
