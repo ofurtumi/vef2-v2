@@ -11,8 +11,9 @@ CREATE TABLE IF NOT EXISTS registration (
     id serial primary key,
     name character varying(64) NOT NULL,
     comment varchar(500),
-    eventid serial,
-    created timestamp with time zone not null default current_timestamp
+    eventid INTEGER NOT NULL,
+    created timestamp with time zone not null default current_timestamp,
+    CONSTRAINT eventid FOREIGN KEY (eventid) REFERENCES events (id)
 );
 
 CREATE TABLE IF NOT EXISTS users (
