@@ -1,6 +1,6 @@
 :root {
   --border-basic: 5px solid #000;
-  --border-radius-basic: 10px;
+  --border-radius-basic: 0
   --padding-basic: 5px;
 
   --single-event-bg: #fff;
