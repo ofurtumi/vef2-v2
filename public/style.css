@@ -146,6 +146,7 @@ button:focus-visible {
   margin: 0 auto;
   max-width: 95%;
   word-break: break-word;
+  padding-bottom: 5px;
 }
 
 .link-spanner {
