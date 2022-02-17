@@ -119,6 +119,23 @@ export async function respond({ id, name, comment }) {
 export async function deleteRow(id) {
 	let result = [];
 	try {
+		const checkIfComments = await query(
+			'SELECT id FROM registration WHERE eventid = $1',
+			[id]
+		)
+		if (checkIfComments.rowCount !== 0) {
+			
+			checkIfComments.rows.forEach(async element => {
+				await query(
+					'DELETE FROM registration WHERE id = $1',
+					[element.id]
+				);
+			});
+		}
+	} catch (error) {
+		
+	}
+	try {
 		const queryResult = await query(
 			'DELETE FROM events WHERE id = $1 RETURNING *',
 			[id]

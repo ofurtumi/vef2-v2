@@ -2,7 +2,7 @@
 
 <h1><%= title %></h1>
 
-<% if(events) { %> 
+<% if(events.length > 0) { %> 
     <div class="list-events">
         <% events.forEach(event => { %>
             <div class="list-single-event basic-border">
@@ -18,7 +18,7 @@
         <% }); %> 
     </div>
 <% } else { %>
-    <p>Ekki neinir viðburðir til staðar</p>
+    <h1>Ekki neinir viðburðir til staðar</h1>
 <% } %> 
 
 <% if(validated && admin) { %>

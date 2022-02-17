@@ -140,6 +140,7 @@ button:focus-visible {
   text-align: center;
   text-decoration: none;
   word-break: break-word;
+  padding: 5px;
 }
 
 .list-single-event p {

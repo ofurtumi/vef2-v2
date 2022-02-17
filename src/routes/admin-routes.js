@@ -43,7 +43,7 @@ async function index(req, res) {
 async function deleteRoute(req, res) {
   const { id } = req.params;
 
-  const deleted = deleteRow(id);
+  const deleted = await deleteRow(id);
 
   if (deleted) {
     // Tæknilega böggur hér...
