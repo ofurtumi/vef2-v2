@@ -68,7 +68,7 @@ footer p {
 }
 
 main {
-  margin: 0 auto 20px;
+  margin: 0 auto 50px;
   max-width: 1000px;
 }
 
@@ -252,4 +252,14 @@ fieldset p {
 .single-comment h4,
 .single-comment p {
   margin: 0.35em;
+}
+
+@media screen and (max-width: 1000px) {
+  footer {
+    display: none;
+  }
+
+  main {
+    margin: 10px;
+  }
 }
